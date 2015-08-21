@@ -57,8 +57,11 @@ namespace GTAV_PoliceChaseCam
                             var policeVeh = FindNearbyPoliceVehicle(VehicleType.Car);
                             if (policeVeh != null && policeVeh.Handle != 0)
                             {
-                                mainCamera = World.CreateCamera(policeVeh.Position, policeVeh.Rotation, 50f);
-                                mainCamera.AttachTo(policeVeh, new Vector3(0, 1f, 0.5f));
+                                var boneIndex = Function.Call<int>(Hash._GET_ENTITY_BONE_INDEX, policeVeh.Handle, "windscreen");
+                                var bonePos = Function.Call<Vector3>(Hash._GET_ENTITY_BONE_COORDS, policeVeh.Handle, boneIndex);
+                                var camPos = Function.Call<Vector3>(Hash.GET_OFFSET_FROM_ENTITY_GIVEN_WORLD_COORDS, policeVeh.Handle, bonePos.X, bonePos.Y, bonePos.Z);
+                                mainCamera = World.CreateCamera(camPos, policeVeh.Rotation, 40f);
+                                mainCamera.AttachTo(policeVeh, new Vector3(camPos.X, camPos.Y - 0.3f, camPos.Z - 0.02f));
                                 mainCamera.PointAt(player);
                                 World.RenderingCamera = mainCamera;
                                 mViewModeCounter++;
