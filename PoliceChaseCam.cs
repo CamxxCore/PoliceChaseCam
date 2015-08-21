@@ -23,7 +23,7 @@ namespace GTAV_PoliceChaseCam
         public void OnTick(object sender, EventArgs e)
         {
             var veh = FindNearbyPoliceVehicle(VehicleType.Car);
-            if (veh != null && veh.Handle != 0 && !notifyVehicle)
+            if (veh?.Handle != 0 && !notifyVehicle && World.RenderingCamera.Handle != mainCamera?.Handle)
             {
                 UI.Notify("Vehicle Cam Available.");
                 notifyVehicle = true;
@@ -34,7 +34,7 @@ namespace GTAV_PoliceChaseCam
 
             veh = FindNearbyPoliceVehicle(VehicleType.Helicopter);
 
-            if (veh != null && veh.Handle != 0 && !notifyHeli)
+            if (veh?.Handle != 0 && !notifyHeli && World.RenderingCamera.Handle != mainCamera?.Handle)
             {
                 UI.Notify("Helicopter Cam Available.");
                 notifyHeli = true;
