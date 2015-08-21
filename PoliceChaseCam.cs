@@ -110,11 +110,16 @@ namespace GTAV_PoliceChaseCam
                                 VehicleHash.Police2,
                                 VehicleHash.Police3,
                                 VehicleHash.Police4,
+                                VehicleHash.Policeb,
                                 VehicleHash.PoliceT,
                                 VehicleHash.Sheriff,
                                 VehicleHash.Sheriff2,
                                 VehicleHash.FBI,
-                                VehicleHash.FBI2
+                                VehicleHash.FBI2,
+                                VehicleHash.PoliceOld1,
+                                VehicleHash.PoliceOld2,
+                                VehicleHash.Riot,
+                                VehicleHash.Pranger,
                             };
                     return nearbyVehicles
                           .Where(x => hashes.Any(v => v == x.Model) && !x.IsSeatFree(VehicleSeat.Driver))
